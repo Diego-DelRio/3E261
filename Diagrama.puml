@@ -28,9 +28,52 @@ class SpeedUp
 class Heart
 class Escudo
 class EnemigoVolador
-class EnemigoExplosivo
+class EnemigoAvanzado
+BombaNormal --|> Item
+BombaRemota --|> Item
+FireUp --|> Item
+BombUp --|> Item
+SpeedUp --|> Item
+Heart --|> Item
+Escudo --|> Item
+Calavera --|> Item
+Invisibilidad --|> Item
+TiempoExtra --|> Item
+Bota --|> Item
+Guante --|> Item
+EnemigoBasico --|> Personaje
+MiniJefe --|> EnemigoBasico
+JefeFinal --|> EnemigoBasico
+EnemigoVolador --|> EnemigoBasico
+EnemigoAvanzado --|> EnemigoBasico
+Personaje *-- Vida
+Personaje *-- BombaNormal
+Personaje *-- BombaRemota
+Personaje *-- Mascota
+BombaNormal *-- Temporizador
+BombaRemota *-- Temporizador
+Nivel *-- Mapa
+Nivel *-- Puerta
+Nivel *-- BloqueDestructible
+Nivel *-- BloqueIndestructible
+Nivel *-- EnemigoBasico
+Nivel *-- Item
+Explosion *-- Temporizador
+ModoJuego *-- Nivel
+ModoJuego *-- Credito
+Personaje o-- Item
+Personaje o-- Explosion
+Personaje o-- Puerta
+BombaNormal o-- Explosion
+BombaRemota o-- Explosion
+Explosion o-- BloqueDestructible
+Explosion o-- EnemigoBasico
+Guante o-- BombaNormal
+Guante o-- BombaRemota
+Bota o-- SpeedUp
+Mascota o-- Item
+EnemigoBasico o-- Personaje
+MiniJefe o-- Explosion
+JefeFinal o-- Explosion
 
-Pacman --> Personaje
-Pacman *-- Vida
-o--
 @enduml
