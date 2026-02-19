@@ -75,6 +75,11 @@ Mascota o-- Item
 EnemigoBasico o-- Personaje
 MiniJefe o-- Explosion
 JefeFinal o-- Explosion
+<<<<<<< HEAD
 
 
 @enduml
+=======
+
+@enduml
+>>>>>>> 69ffb76cc9d31c6a2d2fe7ec9f8e982ebb411484
