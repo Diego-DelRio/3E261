@@ -1,0 +1,36 @@
+@startuml
+class Personaje
+class BombaNormal
+class BombaRemota
+class Temporizador
+class Vida
+class Credito
+class BloqueDestructible
+class BloqueIndestructible
+class Bota
+class Guante
+class Puerta
+class EnemigoBasico
+class MiniJefe
+class JefeFinal
+class ModoJuego
+class Explosion
+class Calavera
+class Mascota
+class Nivel
+class Mapa
+class Invisibilidad
+class TiempoExtra
+class Item
+class FireUp
+class BombUp
+class SpeedUp
+class Heart
+class Escudo
+class EnemigoVolador
+class EnemigoExplosivo
+
+Pacman --> Personaje
+Pacman *-- Vida
+Pacman o-- Fruta
+@enduml
