@@ -76,5 +76,4 @@ EnemigoBasico o-- Personaje
 MiniJefe o-- Explosion
 JefeFinal o-- Explosion
 
-
 @enduml
