@@ -1,4 +1,5 @@
 @startuml
+
 class Personaje
 class BombaNormal
 class BombaRemota
