@@ -30,6 +30,7 @@ class Heart
 class Escudo
 class EnemigoVolador
 class EnemigoAvanzado
+
 BombaNormal --|> Item
 BombaRemota --|> Item
 FireUp --|> Item
@@ -47,34 +48,36 @@ MiniJefe --|> EnemigoBasico
 JefeFinal --|> EnemigoBasico
 EnemigoVolador --|> EnemigoBasico
 EnemigoAvanzado --|> EnemigoBasico
-Personaje *-- Vida
-Personaje *-- BombaNormal
-Personaje *-- BombaRemota
-Personaje *-- Mascota
-BombaNormal *-- Temporizador
-BombaRemota *-- Temporizador
-Nivel *-- Mapa
-Nivel *-- Puerta
-Nivel *-- BloqueDestructible
-Nivel *-- BloqueIndestructible
-Nivel *-- EnemigoBasico
-Nivel *-- Item
-Explosion *-- Temporizador
-ModoJuego *-- Nivel
-ModoJuego *-- Credito
-Personaje o-- Item
-Personaje o-- Explosion
-Personaje o-- Puerta
-BombaNormal o-- Explosion
-BombaRemota o-- Explosion
-Explosion o-- BloqueDestructible
-Explosion o-- EnemigoBasico
-Guante o-- BombaNormal
-Guante o-- BombaRemota
-Bota o-- SpeedUp
-Mascota o-- Item
-EnemigoBasico o-- Personaje
-MiniJefe o-- Explosion
-JefeFinal o-- Explosion
+
+Personaje "1" *-- "3" Vida
+Personaje "1" *-- "0..*" BombaNormal
+Personaje "1" *-- "0..*" BombaRemota
+Personaje "1" *-- "0..1" Mascota
+BombaNormal "1" *-- "1" Temporizador
+BombaRemota "1" *-- "1" Temporizador
+Nivel "1" *-- "1" Mapa
+Nivel "1" *-- "1" Puerta
+Nivel "1" *-- "0..*" BloqueDestructible
+Nivel "1" *-- "0..*" BloqueIndestructible
+Nivel "1" *-- "1..*" EnemigoBasico
+Nivel "1" *-- "0..*" Item
+Explosion "1" *-- "1" Temporizador
+ModoJuego "1" *-- "1..*" Nivel
+ModoJuego "1" *-- "1" Credito
+
+Personaje "1" o-- "0..*" Item
+Personaje "1" o-- "0..*" Explosion
+Personaje "1" o-- "0..1" Puerta
+BombaNormal "1" o-- "1" Explosion
+BombaRemota "1" o-- "1" Explosion
+Explosion "1" o-- "0..*" BloqueDestructible
+Explosion "1" o-- "0..*" EnemigoBasico
+Guante "1" o-- "0..*" BombaNormal
+Guante "1" o-- "0..*" BombaRemota
+Bota "1" o-- "1" SpeedUp
+Mascota "1" o-- "0..*" Item
+EnemigoBasico "1" o-- "1" Personaje
+MiniJefe "1" o-- "0..*" Explosion
+JefeFinal "1" o-- "0..*" Explosion
 
 @enduml
