@@ -1,0 +1,144 @@
+@startuml
+
+class Personaje{
+    - Vida numVida[1..3]
+}
+
+class Vida
+
+class Mascota{
+    + Personaje: ObtenerItem(Item)
+}
+
+Personaje "1" *-- "1..3" Vida
+Personaje "1" o-- "0..1" Mascota
+
+
+class EnemigoBasico{
+    + Daño: RecibirExplosion(Explosion)
+}
+
+class MiniJefe
+class JefeFinal
+class EnemigoVolador
+class EnemigoAvanzado
+
+MiniJefe --|> EnemigoBasico
+JefeFinal --|> EnemigoBasico
+EnemigoVolador --|> EnemigoBasico
+EnemigoAvanzado --|> EnemigoBasico
+
+
+class Item{
+    + Personaje: Usar(Personaje)
+}
+
+class BombaNormal{
+    - Temporizador temporizador[1]
+    + Explosion: GenerarExplosion(Personaje)
+}
+
+class BombaRemota{
+    - Temporizador temporizador[1]
+    + Explosion: GenerarExplosion(Personaje)
+}
+
+class Temporizador
+
+class Explosion{
+    - Temporizador temporizador[1]
+    + Daño: AplicarDaño(EnemigoBasico)
+    + Daño: AplicarDaño(Personaje)
+    + Item: DestruirBloque(BloqueDestructible)
+
+}
+
+BombaNormal --|> Item
+BombaRemota --|> Item
+
+BombaNormal "1" *-- "1" Temporizador
+BombaRemota "1" *-- "1" Temporizador
+Explosion "1" *-- "1" Temporizador
+
+Personaje "1" o-- "0..*" BombaNormal
+Personaje "1" o-- "0..*" BombaRemota
+
+BombaNormal "1" o-- "1" Explosion
+BombaRemota "1" o-- "1" Explosion
+
+Explosion "1" o-- "0..*" EnemigoBasico
+Explosion "1" o-- "0..*" Personaje
+Explosion "1" o-- "0..*" BloqueDestructible
+
+
+
+class FireUp
+class BombUp
+
+class SpeedUp{
+    + Velocidad: AumentarVelocidad(Personaje)
+}
+
+class Heart
+class Escudo
+class Calavera
+class Invisibilidad
+class TiempoExtra
+class Bota
+class Guante
+
+FireUp --|> Item
+BombUp --|> Item
+SpeedUp --|> Item
+Heart --|> Item
+Escudo --|> Item
+Calavera --|> Item
+Invisibilidad --|> Item
+TiempoExtra --|> Item
+Bota --|> Item
+Guante --|> Item
+
+Personaje "1" o-- "0..*" Item
+Mascota "1" o-- "0..*" Item
+
+Guante "1" o-- "0..*" BombaNormal
+Guante "1" o-- "0..*" BombaRemota
+Bota "1" o-- "1" SpeedUp
+
+
+class Nivel{
+    - Mapa mapa[1]
+    - Puerta puerta[1]
+    - BloqueDestructible bloquesD[0..*]
+    - BloqueIndestructible bloquesI[0..*]
+    - EnemigoBasico enemigos[1..*]
+}
+
+class Mapa
+class Puerta
+
+class BloqueDestructible{
+    + Item: SoltarItem(Explosion)
+}
+
+class BloqueIndestructible
+
+Nivel "1" *-- "1" Mapa
+Nivel "1" *-- "1" Puerta
+Nivel "1" *-- "0..*" BloqueDestructible
+Nivel "1" *-- "0..*" BloqueIndestructible
+Nivel "1" *-- "1..*" EnemigoBasico
+
+Nivel "1" o-- "0..*" Item
+
+class ModoJuego{
+    - Nivel niveles[1..*]
+    - Credito credito[1]
+}
+
+class Credito
+
+ModoJuego "1" *-- "1..*" Nivel
+ModoJuego "1" *-- "1" Credito
+
+@enduml
