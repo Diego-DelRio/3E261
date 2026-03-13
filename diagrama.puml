@@ -24,9 +24,10 @@ class EnemigoVolador
 class EnemigoAvanzado
 
 MiniJefe --|> EnemigoBasico
-JefeFinal --|> EnemigoBasico
+JefeFinal --|> EnemigoAvanzado
 EnemigoVolador --|> EnemigoBasico
-EnemigoAvanzado --|> EnemigoBasico
+EnemigoBasico --|> Personaje
+EnemigoAvanzado --|> Personaje
 
 
 class Item{
@@ -35,19 +36,18 @@ class Item{
 
 class BombaNormal{
     - Temporizador temporizador[1]
-    + Explosion: GenerarExplosion(Personaje)
+    - Explosion Explotar[1]
 }
 
 class BombaRemota{
     - Temporizador temporizador[1]
-    + Explosion: GenerarExplosion(Personaje)
+    - Explosion Explotar[1]
 }
 
 class Temporizador
 
 class Explosion{
     - Temporizador temporizador[1]
-    + Daño: AplicarDaño(EnemigoBasico)
     + Daño: AplicarDaño(Personaje)
     + Item: DestruirBloque(BloqueDestructible)
 
@@ -63,13 +63,11 @@ Explosion "1" *-- "1" Temporizador
 Personaje "1" o-- "0..*" BombaNormal
 Personaje "1" o-- "0..*" BombaRemota
 
-BombaNormal "1" o-- "1" Explosion
-BombaRemota "1" o-- "1" Explosion
+BombaNormal "1" *-- "1" Explosion
+BombaRemota "1" *-- "1" Explosion
 
-Explosion "1" o-- "0..*" EnemigoBasico
 Explosion "1" o-- "0..*" Personaje
 Explosion "1" o-- "0..*" BloqueDestructible
-
 
 
 class FireUp
@@ -111,7 +109,7 @@ class Nivel{
     - Puerta puerta[1]
     - BloqueDestructible bloquesD[0..*]
     - BloqueIndestructible bloquesI[0..*]
-    - EnemigoBasico enemigos[1..*]
+    - Personaje personaje[1..*]
 }
 
 class Mapa
@@ -127,8 +125,7 @@ Nivel "1" *-- "1" Mapa
 Nivel "1" *-- "1" Puerta
 Nivel "1" *-- "0..*" BloqueDestructible
 Nivel "1" *-- "0..*" BloqueIndestructible
-Nivel "1" *-- "1..*" EnemigoBasico
-
+Nivel "1" *-- "1..*" Personaje
 Nivel "1" o-- "0..*" Item
 
 class ModoJuego{
